@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta name="description" content="Mouse Click Example - A-Frame">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <script>
+        AFRAME.registerComponent('navigate-on-click', {
+            schema: {
+                url: { default: '' }
+            },
+
+            init: function () {
+                var data = this.data;
+                var el = this.el;
+
+                el.addEventListener('click', function () {
+                    window.location.href = data.url;
+                });
+            }
+        });        
+    </script>
+
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="buildings" src="./buildings.glb"></a-asset-item>
+            <a-asset-item id="bmw" src="./bmw_m3_e46.glb"></a-asset-item>
+            <img id="texture" src="asset/pintu.png">
+        </a-assets>
+        
+        <a-image scale="4 4 4" position="37 3.5 2" rotation="0 90 0" src="#texture" 
+            navigate-on-click="url: gambar.html">
+        </a-image>
+        <a-image scale="4 4 4" position="37 3.5 6" rotation="0 90 0" src="#texture" 
+            navigate-on-click="url: gambar2.html">
+        </a-image>
+        <a-image scale="4 4 4" position="37 3.5 10" rotation="0 90 0" src="#texture" 
+            navigate-on-click="url: gambar3.html">
+        </a-image>
+        <a-image scale="4 4 4" position="37 3.5 14" rotation="0 90 0" src="#texture" 
+            navigate-on-click="url: gambar4.html">
+        </a-image>
+        <a-image scale="4 4 4" position="37 3.5 18" rotation="0 90 0" src="#texture" 
+            navigate-on-click="url: gambar5.html">
+        </a-image>
+        <a-entity gltf-model="#buildings" scale="0.2 0.2 0.2" position="0 1 0"></a-entity>
+        <a-entity gltf-model="#bmw" scale="1.5 1.5 1.5" position="0 1 4" rotation="0 -90 0" animation="property: position; to: -70 1 4; dur: 10000; easing: linear; loop: true;"></a-entity>
+
+        <a-entity gltf-model="#bmw" scale="1.5 1.5 1.5" position="0 1 17" rotation="0 -90 0" animation="property: position; to: -70 1 17; dur: 10000; easing: linear; loop: true; startEvents: mouseenter;"></a-entity>
+
+        <a-entity id="camera" position="0 4 0" rotation="0 180 0">
+            <a-entity camera look-controls wasd-controls="acceleration:60" look-controls cursor="rayOrigin: mouse" position="0 0 0"></a-entity>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>
